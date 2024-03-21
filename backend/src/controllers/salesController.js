@@ -17,7 +17,9 @@ exports.addSale = async (req, res) => {
 
 exports.createBulkSale = async (req, res) => {
     try {
-        const {bill_id, items} = req.body;
+        const employee = req.userData.userName;
+        const billId = await getNextSequence('bill_id');
+        const {items} = req.body;
         // Validate and create sales in a loop
         const createdSales = [];
         for (const item of items) {
@@ -41,7 +43,8 @@ exports.createBulkSale = async (req, res) => {
                 sell_date: new Date(), 
                 cost_price: inventoryItem.cost_price,
                 sell_price: inventoryItem.sell_price,
-                bill_id 
+                bill_id: billId,
+                employee_name: employee
             });
             createdSales.push(newSale);
 

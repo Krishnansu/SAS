@@ -1,12 +1,18 @@
 const Counter = require('./models/counters');
 
 async function getNextSequence(counterName) {
-    const result = await Counter.findByIdAndUpdate(
-        counterName, 
-        { $inc: { seq: 2 } }, 
-        { new: true, upsert: true } // Create if it doesn't exist, return the new value
+    let counter = await Counter.findOneAndUpdate(
+        { counter_id: counterName }, 
+        { $inc: { seq: 1 } }, 
+        { new: true } 
     );
-    return result.seq;
+
+    if (!counter) {
+        counter = new Counter({ counter_id: counterName, seq: 8 }); 
+        await counter.save();
+    }
+
+    return counter.seq;
 }
 
 module.exports = {

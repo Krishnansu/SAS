@@ -1,9 +1,15 @@
 const Inventory = require('../models/inventory');
-
+const { getNextSequence } = require('../utils');
 // Add an item
 exports.addItem = async (req, res) => {
     try {
-        const newItem = new Inventory(req.body);
+        const itemId = await getNextSequence('item_id');
+
+        // Add item_id to the new item object
+        const newItem = new Inventory({
+            ...req.body,
+            item_id: itemId
+        });
         const savedItem = await newItem.save();
         res.status(201).json(savedItem);
     } catch (err) {
@@ -27,9 +33,10 @@ exports.removeItem = async (req, res) => {
 // Modify an item 
 exports.modifyItem = async (req, res) => {
     try {
+        const updateData = { ...req.body, modified_date: Date.now() };
         const updatedItem = await Inventory.findOneAndUpdate(
             { item_id: req.params.itemId }, // Search by item_id
-            req.body,
+            updateData,
             { new: true } 
         );
         if (!updatedItem) {

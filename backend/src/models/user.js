@@ -1,17 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { getNextSequence } = require('../utils');
 
-let currentUserId = 3; // Initialize starting value
-
-function generateUniqueUserId() {
-    return currentUserId++;
-}
 
 const userRoleEnum = ['manager', 'salesman'];
 
 const userSchema = new mongoose.Schema({
-    user_id: { type: Number, required: true, unique: true, default: () => generateUniqueUserId() },
+    user_id: { type: Number, required: true, unique: true},
     user_name: { type: String, required: true },
     user_role: { type: String, required: true, enum: userRoleEnum },
     user_email: { type: String, required: true, unique: true },

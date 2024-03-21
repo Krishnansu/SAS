@@ -3,7 +3,7 @@ const User = require('../models/user'); // Assuming you have your User model
 exports.getCurrentUserDetails = async (req, res) => {
     try {
         console.log(req.userData);
-        const user = await User.findOne({ user_id: req.userData.user_id }); // Get user ID from decoded token
+        const user = await User.findOne({ user_id: req.userData.userId }); // Get user ID from decoded token
 
         if (!user) {
             return res.status(404).json({ message: 'User not found' }); 
