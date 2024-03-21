@@ -8,7 +8,7 @@ async function getNextSequence(counterName) {
     );
 
     if (!counter) {
-        counter = new Counter({ counter_id: counterName, seq: 8 }); 
+        counter = new Counter({ counter_id: counterName, seq: 1 }); 
         await counter.save();
     }
 
