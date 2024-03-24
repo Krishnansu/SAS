@@ -5,7 +5,6 @@ exports.addItem = async (req, res) => {
     try {
         const itemId = await getNextSequence('item_id');
 
-        // Add item_id to the new item object
         const newItem = new Inventory({
             ...req.body,
             item_id: itemId
@@ -59,3 +58,11 @@ exports.fetchItems = async (req, res) => {
 };
 
 // ... add more if needed (e.g., fetch a single item)
+exports.fetchItem = async (req, res) => {
+    try {
+        const item = await Inventory.findOne({item_id: req.params.itemId});
+        res.json(item);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};

@@ -101,6 +101,7 @@ exports.fetchSalesStatsByDate = async (req, res) => {
         const startDate = new Date(req.query.date);  
         const endDate = new Date(req.query.date);
 
+        console.log(startDate);
         startDate.setUTCHours(0, 0, 0, 0);
         endDate.setUTCHours(23, 59, 59, 999);
 
@@ -121,7 +122,7 @@ exports.fetchSalesStatsByDate = async (req, res) => {
                 }
             }
         ]);
-
+        console.log(stats);
         res.json(stats[0] || { totalQuantity: 0, totalPrice: 0, totalProfit: 0 }); 
     } catch (err) {
         res.status(500).json({ error: err.message });

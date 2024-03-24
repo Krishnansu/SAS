@@ -10,5 +10,6 @@ router.patch('/:itemId', authMiddleware, inventoryController.modifyItem);
 
 // Public route (if needed)
 router.get('/', inventoryController.fetchItems); // Assuming this is OK to be public
+router.get('/:itemId',inventoryController.fetchItem);
 
 module.exports = router;

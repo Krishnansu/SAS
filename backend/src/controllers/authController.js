@@ -44,7 +44,15 @@ exports.login = async (req, res) => {
         const payload = { userId: user.user_id, userName: user.user_name, userRole: user.user_role }; 
         const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-        res.json({ token }); 
+        res.json({ token, userRole: user.user_role, userName: user.user_name }); 
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+};
+
+exports.logout = async (req, res) => {
+    try {
+        res.json({ message: 'Logout successful' });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

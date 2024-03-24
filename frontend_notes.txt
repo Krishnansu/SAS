@@ -1,0 +1,18 @@
+Pages:
+- Login Page (With options for both Manager signin and Salesman signin)
+- Dashboard Page having options for both Inventory Management and Sale (For Manager)
+- Inventory Management page which allows to both view and edit (For manager)
+- Dashboard Page having options for only Sale (For Salesman)
+- Sale Page which shows items and can be added to sale (For both Manager and Salesman)
+- Bill Page which shows the bill after completion of sale (For both Manager and Salesman)
+- Sales statistics page for a particular item (the quantity of an item sold, total price realised, total profit from that item) for a particular date or range of dates
+
+
+write the react page where all the inventory will be displayed along with options to modify the items and remove them. 
+
+Name: Laundry Detergent
+Cost Price: 5
+Sell Price: 7
+Stock: 37
+
+write the frontend react page for sale page which will list down all items (their item names, sell prices and stock left). Every item will also have a input field to specify how much quantity is to be sold. Finally a submit button to confirm sale of the specified items. After the sale, redirect to a billing page which will show the bill depending on the billId of this sale. 
