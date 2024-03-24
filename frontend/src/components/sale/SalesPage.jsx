@@ -31,14 +31,12 @@ const SalesPage = () => {
   const handleSubmitSale = async () => {
     const saleItems = [];
     const token = localStorage.getItem('authToken');
-    console.log("SaleQuanitities",saleQuantities);
     for (const itemId in saleQuantities) {
       const quantity = saleQuantities[itemId];
       if (quantity > 0) {
         saleItems.push({ item_id: itemId, quantity });
       }
     }
-    console.log("SaleItems",saleItems);
     if (saleItems.length === 0) {
       alert('Please select quantity for at least one item');
       return;
@@ -46,7 +44,6 @@ const SalesPage = () => {
 
     try {
       const response = await api.createBulkSale(token,saleItems);
-      console.log(response);
       const billId = response[0].bill_id; // Assuming the first response object has the bill ID
       navigate(`/billing/${billId}`);
     } catch (error) {

@@ -15,7 +15,6 @@ const SalesStats = () => {
   const token = localStorage.getItem('authToken');
   useEffect(() => {
     const date = state.date; 
-    console.log(state);
     const startDate = state.startDate;
     const endDate = state.endDate;
     setDate(date.toISOString().slice(0,10));
@@ -27,12 +26,10 @@ const SalesStats = () => {
         if(state.dateRange)
         {
             const response = await api.fetchSalesStatsByDateRange(token, itemId, startDate, endDate);
-            console.log("In SalesStats Range Date",response);
             setStats(response || { totalQuantity: 0, totalPrice: 0, totalProfit: 0 });
         }
         else{
             const response = await api.fetchSalesStatsByDate(token, itemId, date);
-            console.log("In SalesStats Single Date",response);
             setStats(response || { totalQuantity: 0, totalPrice: 0, totalProfit: 0 });
         }
          

@@ -97,7 +97,6 @@ const addItem = async (token, itemData) => {
   if (!response.ok) {
     throw new Error('Could not add item'); 
   }
-  console.log(response);
   return response.json(); // Might return the added item with ID
 };
 
@@ -127,7 +126,6 @@ const modifyItem = async (token, itemId, updatedData) => {
   if (!response.ok) {
     throw new Error('Could not update item'); 
   }
-  console.log(response);
   return response.json(); // Might return the updated item
 };
 
@@ -161,7 +159,6 @@ const createBulkSale = async (token, items) => {
   if (!response.ok) {
     throw new Error('Could not create bulk sale');
   }
-  console.log(response);
   return response.json(); 
 };
 

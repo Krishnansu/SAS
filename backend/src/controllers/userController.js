@@ -2,7 +2,7 @@ const User = require('../models/user');
 
 exports.getCurrentUserDetails = async (req, res) => {
     try {
-        console.log(req.userData);
+        
         const user = await User.findOne({ user_id: req.userData.userId }); // Get user ID from decoded token
 
         if (!user) {
