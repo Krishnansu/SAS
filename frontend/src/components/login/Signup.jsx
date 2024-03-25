@@ -10,7 +10,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/home');
+    navigate('/');
 };
 
   const handleSignup = async (event) => {

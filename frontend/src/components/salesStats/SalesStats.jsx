@@ -16,7 +16,7 @@ const SalesStats = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/home');
+    navigate('/stats');
 };
   useEffect(() => {
     const date = state.date; 

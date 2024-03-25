@@ -8,7 +8,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/home');
+    navigate('/signup');
 };
 
   const handleLogin = async (event) => {
