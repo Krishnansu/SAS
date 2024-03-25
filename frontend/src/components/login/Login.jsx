@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import api from '../../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState(''); // Update state variable
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -13,7 +15,8 @@ const Login = () => {
       localStorage.setItem('authToken', token); 
       localStorage.setItem('userRole', userRole);
       localStorage.setItem('userName', userName);
-      window.location.href = '/home';  
+      // window.location.href = '/home';  
+      navigate('/home');
     } catch (error) {
        console.log('Login error: ' + error.message); 
     }
