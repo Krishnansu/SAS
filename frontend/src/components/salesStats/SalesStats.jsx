@@ -13,6 +13,11 @@ const SalesStats = () => {
   const { state } = useLocation(); 
   const { itemId } = useParams();
   const token = localStorage.getItem('authToken');
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/home');
+};
   useEffect(() => {
     const date = state.date; 
     const startDate = state.startDate;
@@ -74,9 +79,9 @@ const SalesStats = () => {
           <p className='p-2 outline m-2 w-[50%]'>Total Profit: {stats.totalProfit}</p>
 
           <div className='flex flex-row justify-center'>
-          <a href="/stats">
-                <button className='bg-purple-400 w-full text-gray-900 font-bold text-lg hover:bg-purple-700 hover:text-white p-1 m-2 border-2 rounded-2xl '>Back</button> 
-            </a>
+
+                <button className='bg-purple-400 w-full text-gray-900 font-bold text-lg hover:bg-purple-700 hover:text-white p-1 m-2 border-2 rounded-2xl ' onClick={handleNavigation}>Back</button> 
+            
             {/* <a href="/home">
                 <button className='bg-purple-400 text-gray-900 font-bold text-lg hover:bg-purple-700 hover:text-white p-1 m-2 border-2 rounded-2xl '>Return Home</button> 
             </a> */}

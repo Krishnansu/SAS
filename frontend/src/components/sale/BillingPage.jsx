@@ -85,11 +85,11 @@ const BillingPage = () => {
     ) : (
       <p>Loading bill details...</p>
     )}
-    <div className='flex flex-col items-center'>
+    {/* <div className='flex flex-col items-center'>
     <a href="/home">
         <button className='bg-purple-400 text-gray-900 font-bold text-xl hover:bg-purple-700 hover:text-white p-4 border-2 rounded-full '>Return Home</button> 
       </a>
-    </div>
+    </div> */}
     
   </div>
   );

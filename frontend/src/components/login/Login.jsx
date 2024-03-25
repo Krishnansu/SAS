@@ -7,6 +7,10 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  const handleNavigation = () => {
+    navigate('/home');
+};
+
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -37,7 +41,7 @@ const Login = () => {
       <button className='mt-6 ml-[30%] outline outline-purple-600 rounded-full py-1 px-6 hover:bg-purple-600 hover:text-white' type="submit">Login</button>
     </form>
     <div className='flex flex-row justify-center'>
-        <a className='hover:text-purple-500' href='/signup'>New User ?</a>
+        <button className='hover:text-purple-500' onClick={handleNavigation} >New User ?</button>
     </div>
     </div>
   );

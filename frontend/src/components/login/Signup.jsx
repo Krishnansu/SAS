@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import api from '../../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState(''); 
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('salesman'); // Default to salesman
+  const navigate = useNavigate();
+
+  const handleNavigation = () => {
+    navigate('/home');
+};
 
   const handleSignup = async (event) => {
     event.preventDefault();
@@ -20,7 +26,8 @@ const Signup = () => {
 
       await api.signup(userData); 
       console.log('Signup successful!'); 
-      window.location.href = '/';
+      // window.location.href = '/';
+      navigate('/');
     } catch (error) {
       console.log('Signup error: ' + error.message); 
     }
@@ -66,7 +73,7 @@ const Signup = () => {
       <button className='mt-6 ml-[30%] outline outline-purple-600 rounded-full py-1 px-6 hover:bg-purple-600 hover:text-white' type="submit">Sign Up</button>
     </form>
     <div className='flex flex-row justify-center'>
-        <a className='hover:text-purple-500' href='/'>Existing User ?</a>
+        <button className='hover:text-purple-500'onClick={handleNavigation} >Existing User ?</button>
     </div>
   </div>
   );
