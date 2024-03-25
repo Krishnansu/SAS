@@ -57,7 +57,7 @@ const SalesStatsInputPage = () => {
           </select>
         </div>
         <div className='w-full p-4'>
-            <button className='outline p-1 mb-4 w-full' type="button" onClick={(e) => setDateRange(!dateRange)}>
+            <button className='outline p-1 mb-4 w-full bg-purple-200 text-gray-800 hover:bg-purple-700 hover:text-white' type="button" onClick={(e) => setDateRange(!dateRange)}>
             {dateRange ? 
             (<span>Select Single Date</span>):
             (<span>Select Date Range</span>)}
@@ -67,7 +67,7 @@ const SalesStatsInputPage = () => {
             (
                 <div className='flex flex-col '>
                 <div>
-                <label htmlFor="startDate">Start Date:</label>
+                <label htmlFor="startDate">Start Date: </label>
                 <input 
                     type="date" 
                     id="startDate"  
@@ -76,7 +76,7 @@ const SalesStatsInputPage = () => {
                 />
                 </div>
                 <div>
-                <label htmlFor="endDate">End Date:</label>
+                <label htmlFor="endDate">End Date: </label>
                 <input 
                     type="date" 
                     id="endDate"  
@@ -89,7 +89,7 @@ const SalesStatsInputPage = () => {
             ) 
             : (
                 <div>
-                <label htmlFor="date">Date:</label>
+                <label htmlFor="date">Date: </label>
                 <input 
                     type="date" 
                     id="date"  
