@@ -6,6 +6,8 @@ const InventoryItem = ({ item, onDelete, onEdit }) => (
     <div className='my-1'>Cost Price: {item.cost_price}</div>
     <div className='my-1'>Sell Price: {item.sell_price}</div>
     <div className='my-1'>Stock: {item.stock}</div>
+    <div className='my-1'>Date Created: {item.created_date.slice(0,10)}</div>
+    <div className='my-1'>Date Modified: {item.modified_date.slice(0,10)}</div>
     <div className='flex flex-row justify-stretch my-2'>
     <button className='border-1 bg-purple-400 text-gray-800 hover:bg-purple-700 hover:text-white mr-2 px-2 rounded-2xl' onClick={() => onDelete(item.item_id)}>Delete</button>
     <button className='border-1 bg-purple-400 text-gray-800 hover:bg-purple-700 hover:text-white px-2 rounded-2xl' onClick={onEdit}>Edit</button> 
