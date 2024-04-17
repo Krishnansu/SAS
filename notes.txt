@@ -154,3 +154,68 @@ const userController = require('../controllers/userController');
 router.get('/me', authMiddleware, userController.getCurrentUserDetails); 
 
 module.exports = router;
+
+
+
+/api/auth
+  /login (post)
+  /signup (post)
+  /logout (post)
+
+/api/inventory
+  / (get,post)
+  /:itemId  (get, patch ,delete)
+
+/api/sales
+  /  (get,post)
+  /bill/:billId  (get)
+  /item/:itemId  (get)
+  /stats/item/:itemId  (get)
+  /stats/item/:itemId/range  (get)
+  /bulk  (post)
+
+
+  
+const userRoleEnum = ['manager', 'salesman'];
+
+const userSchema = new mongoose.Schema({
+    user_id: { type: Number, required: true, unique: true},
+    user_name: { type: String, required: true },
+    user_role: { type: String, required: true, enum: userRoleEnum },
+    user_email: { type: String, required: true, unique: true },
+    user_password: { type: String, required: true }
+});
+
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('user_password')) return next(); 
+
+    const salt = await bcrypt.genSalt(10);  
+    this.user_password = await bcrypt.hash(this.user_password, salt);
+    next();
+});
+
+const inventorySchema = new mongoose.Schema({
+    item_id: { type: Number, required: true, unique: true },
+    item_name: { type: String, required: true },
+    cost_price: { type: Number, required: true },
+    sell_price: { type: Number, required: true },
+    stock: { type: Number, required: true },
+    created_date: {
+        type: Date,
+        default: Date.now // Automatic timestamp for when the item is created
+      },
+    modified_date: {
+        type: Date,
+        default: Date.now
+      }
+});
+
+const salesSchema = new mongoose.Schema({
+    item_id: { type: Number, required: true }, 
+    quantity: { type: Number, required: true },
+    bill_id: { type: Number, required: true },
+    employee_name: {type: String, required: true},
+    sell_date: { type: Date, required: true }, 
+    cost_price: { type: Number, required: true },
+    sell_price: { type: Number, required: true }
+});

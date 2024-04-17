@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../../utils/api';
 import { useLocation } from 'react-router-dom';
 import { useParams, useNavigate } from 'react-router-dom';
+import AccessDenied from '../error/AccessDenied';
 
 const SalesStats = () => {
   const [stats, setStats] = useState(null);
@@ -13,11 +14,20 @@ const SalesStats = () => {
   const { state } = useLocation(); 
   const { itemId } = useParams();
   const token = localStorage.getItem('authToken');
+  const [userRole, setUserRole] = useState('')
   const navigate = useNavigate();
 
   const handleNavigation = () => {
     navigate('/stats');
 };
+
+
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole'); 
+    setUserRole(storedRole);
+  }, []);
+
   useEffect(() => {
     const date = state.date; 
     const startDate = state.startDate;
@@ -61,10 +71,16 @@ const SalesStats = () => {
   }, [itemId]);
 
   return (
+    <>
+    {userRole === 'salesman' &&   
+      <AccessDenied />
+    }
+
+    {userRole === 'manager' && 
     <div className='flex flex-row justify-center my-[7%]'>
       {stats ? (
         <div className='flex flex-col items-center border-2 shadow-2xl w-[30%] p-4'>
-        <div className='flex flex-row justify-center my-[5%]'><h1 className='text-4xl font-bold'>Sales Statistics</h1></div>
+        <div className='flex flex-row justify-center my-[5%]'><h1 className='text-6xl font-bold font-serif'>Sales Statistics</h1></div>
         {xdateRange ? 
         (
             <div className='flex flex-row justify-center my-[5%]'><h1 className='text-2xl font-semibold'>from {xstartDate} - {xendDate}</h1></div>
@@ -80,10 +96,10 @@ const SalesStats = () => {
 
           <div className='flex flex-row justify-center'>
 
-                <button className='bg-purple-400 w-full text-gray-900 font-bold text-lg hover:bg-purple-700 hover:text-white p-1 m-2 border-2 rounded-2xl ' onClick={handleNavigation}>Back</button> 
+                <button className='bg-blue-400 w-full text-gray-900 font-bold text-lg hover:bg-blue-700 hover:text-white p-1 m-2 border-2 rounded-2xl ' onClick={handleNavigation}>Back</button> 
             
             {/* <a href="/home">
-                <button className='bg-purple-400 text-gray-900 font-bold text-lg hover:bg-purple-700 hover:text-white p-1 m-2 border-2 rounded-2xl '>Return Home</button> 
+                <button className='bg-blue-400 text-gray-900 font-bold text-lg hover:bg-blue-700 hover:text-white p-1 m-2 border-2 rounded-2xl '>Return Home</button> 
             </a> */}
     </div>
         </div>
@@ -91,6 +107,8 @@ const SalesStats = () => {
         <p>Loading...</p>
       )}
     </div>
+    }
+    </>
   );
 };
 

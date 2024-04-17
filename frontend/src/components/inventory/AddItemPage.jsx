@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import api from '../../utils/api';
 import { useNavigate } from 'react-router-dom';
+import AccessDenied from '../error/AccessDenied';
 
 const AddItemPage = () => {
   const [itemName, setItemName] = useState('');
@@ -8,6 +9,13 @@ const AddItemPage = () => {
   const [costPrice, setCostPrice] = useState(0);
   const [stock, setStock] = useState(0);
   const navigate = useNavigate();
+
+  const [userRole, setUserRole] = useState('')
+
+  useEffect(() => {
+    const storedRole = localStorage.getItem('userRole'); 
+    setUserRole(storedRole);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,6 +37,12 @@ const AddItemPage = () => {
   };
 
   return (
+    <>
+    {userRole === 'salesman' &&   
+      <AccessDenied />
+    }
+
+    {userRole === 'manager' && 
     <div className='flex flex-row justify-center'>
       <form className='flex flex-col items-start my-[10%] border p-4 shadow-xl shadow-slate-500' onSubmit={handleSubmit}>
         <h1 className='p-2 text-2xl font-bold text-gray-800'>Add Item</h1>
@@ -83,6 +97,8 @@ const AddItemPage = () => {
           
         </form>
     </div>
+    }
+    </>
   );
 };
 

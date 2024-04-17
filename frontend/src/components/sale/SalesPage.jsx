@@ -44,7 +44,7 @@ const SalesPage = () => {
 
     try {
       const response = await api.createBulkSale(token,saleItems);
-      const billId = response[0].bill_id; // Assuming the first response object has the bill ID
+      const billId = response[0].bill_id; 
       navigate(`/billing/${billId}`);
     } catch (error) {
       console.error('Error creating sale:', error);
@@ -54,8 +54,8 @@ const SalesPage = () => {
 
   return (
     <div className='flex flex-col items-center'>
-      <h1 className='text-3xl font-bold my-4'>Make Sale</h1>
-      <table className='table-auto'>
+      <h1 className='text-6xl font-bold my-6 font-serif'>Make Sale</h1>
+      <table className='table-auto shadow-2xl shadow-black'>
         <thead className='outline'>
           <tr>
             <th className='p-2'>Item Name</th>
@@ -83,7 +83,7 @@ const SalesPage = () => {
           ))}
         </tbody>
       </table>
-      <button className='my-4 border-1 bg-yellow-300 text-gray-800 hover:bg-yellow-600 hover:text-white p-2 rounded-2xl' onClick={handleSubmitSale}>Confirm Sale</button>
+      <button className='my-4 border-1 bg-yellow-300 text-gray-800 hover:bg-orange-500 hover:text-white p-2 rounded-2xl shadow-2xl' onClick={handleSubmitSale}>Confirm Sale</button>
     </div>
   );
 };

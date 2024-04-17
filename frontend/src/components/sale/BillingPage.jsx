@@ -46,10 +46,12 @@ const BillingPage = () => {
   // ... rest of your component to display bill details ...
 
   return (
-    <div >
-    <div className='flex flex-row justify-center my-[1%]'><h1 className='text-4xl font-bold'>Bill</h1></div>
+    <div className='flex flex-col items-center'>
+    <div className='flex flex-row justify-center my-[2%]'>
+    <h1 className='text-6xl font-bold font-serif'>Bill</h1>
+    </div>
     {billDetails ? (
-      <div className='flex flex-col items-center'>
+      <div className='flex flex-col items-center w-[50%] shadow-2xl shadow-blue-600'>
         <p>Bill ID: {billDetails[0].bill_id}</p> 
         <p>Date: {new Date(billDetails[0].sell_date).toLocaleDateString()}</p>
         <p>Employee: {billDetails[0].employee_name}</p> 

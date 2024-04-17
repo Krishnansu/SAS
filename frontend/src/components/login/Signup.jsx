@@ -70,10 +70,10 @@ const Signup = () => {
         </div>
       </div>
 
-      <button className='mt-6 ml-[30%] outline outline-purple-600 rounded-full py-1 px-6 hover:bg-purple-600 hover:text-white' type="submit">Sign Up</button>
+      <button className='mt-6 ml-[30%] outline outline-blue-400 rounded-full py-1 px-6 hover:bg-blue-500 hover:text-white' type="submit">Sign Up</button>
     </form>
     <div className='flex flex-row justify-center'>
-        <button className='hover:text-purple-500'onClick={handleNavigation} >Existing User ?</button>
+        <button className='hover:text-blue-500'onClick={handleNavigation} >Existing User ?</button>
     </div>
   </div>
   );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../utils/api'; // Assuming you have your API functions in api.js
 import { useParams, useNavigate } from 'react-router-dom';
+import AccessDenied from '../error/AccessDenied';
 
 const EditItemPage = () => {
   // State to get itemId from the URL
@@ -12,6 +13,8 @@ const EditItemPage = () => {
   const [sellPrice, setSellPrice] = useState(0);
   const [costPrice, setCostPrice] = useState(0);
   const [stock, setStock] = useState(0);
+  const [userRole, setUserRole] = useState('')
+
 
   const navigate = useNavigate();
 
@@ -20,7 +23,9 @@ const EditItemPage = () => {
     const fetchItem = async () => {
       try {
         const token = localStorage.getItem('authToken');
-        const response = await api.fetchItem(token, itemId); // Assuming you have this function
+        const storedRole = localStorage.getItem('userRole'); 
+        setUserRole(storedRole);
+        const response = await api.fetchItem(token, itemId);
         setItemData(response);
         // Pre-fill the form fields
         setItemName(response.item_name);
@@ -55,6 +60,12 @@ const EditItemPage = () => {
   };
 
   return (
+    <>
+    {userRole === 'salesman' &&   
+      <AccessDenied />
+    }
+
+    {userRole === 'manager' && 
     <div className='flex flex-row justify-center'>
       {itemData ? ( // Display the form only when itemData is loaded
         <form className='flex flex-col items-start my-[10%] border p-4 shadow-xl shadow-slate-500' onSubmit={handleSubmit}>
@@ -113,6 +124,8 @@ const EditItemPage = () => {
         <p>Loading item...</p>
       )}
     </div>
+    }
+    </>
   );
 };
 

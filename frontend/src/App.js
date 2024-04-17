@@ -15,7 +15,7 @@ import SalesStats from './components/salesStats/SalesStats';
 import Navbar from './components/navbar/Navbar';
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
@@ -35,6 +35,6 @@ function App() {
       
     </div>
   );
-}
+};
 
 export default App;
