@@ -45,7 +45,7 @@ const SalesStatsInputPage = () => {
       navigate(`/stats/${selectedItemId}`, { state: { date: date, startDate: startDate, endDate: endDate, dateRange: dateRange} });
     } catch (error) {
       console.error('Error fetching sales stats:', error);
-      // Handle the error (e.g., display an error message)
+
     }
   };
 

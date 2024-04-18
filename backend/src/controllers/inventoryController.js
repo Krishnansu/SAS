@@ -57,7 +57,7 @@ exports.fetchItems = async (req, res) => {
     }
 };
 
-// ... add more if needed (e.g., fetch a single item)
+// fetch a single item
 exports.fetchItem = async (req, res) => {
     try {
         const item = await Inventory.findOne({item_id: req.params.itemId});

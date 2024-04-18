@@ -33,7 +33,7 @@ const signup = async (userData) => {
   return response.json(); // Returns details based on your backend
 };
 
-// ...other api.js functions...
+
 
 const logout = async () => {
   try { 

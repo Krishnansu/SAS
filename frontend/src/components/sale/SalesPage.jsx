@@ -48,7 +48,7 @@ const SalesPage = () => {
       navigate(`/billing/${billId}`);
     } catch (error) {
       console.error('Error creating sale:', error);
-      alert('Error creating sale. Please try again.');
+      alert('Cannot create sale. Please select valid quantity.');
     }
   };
 
